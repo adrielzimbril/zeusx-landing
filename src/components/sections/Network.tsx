@@ -1,6 +1,6 @@
-import { Frame } from "@/components/shared/Frame";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import Drone3D from "@/components/effects/Drone3D";
+import { TacticalFrame } from "@/components/shared/TacticalFrame";
 
 const relayNodes = [
   { name: "Relay Alpha", state: "Uplink stable", score: "99.1", load: 0.4 },
@@ -19,7 +19,10 @@ export function Network() {
           body="Distributed mesh architecture ensuring low-latency communication and redundant data paths across all mission-critical airframes."
         />
         <div className="mt-12 grid gap-6 lg:grid-cols-12">
-          <Frame className="lg:col-span-5 bg-[#0d0d12] p-0 overflow-hidden relative group">
+          <TacticalFrame 
+            className="lg:col-span-5 bg-[#0d0d12] p-0 overflow-hidden relative group"
+            intensity={20}
+          >
             <div className="h-80 w-full relative">
               <Drone3D accentColor="#10b981" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d12] to-transparent opacity-60" />
@@ -47,9 +50,9 @@ export function Network() {
                 ))}
               </div>
             </div>
-          </Frame>
+          </TacticalFrame>
 
-          <Frame className="lg:col-span-7 bg-[#0d0d12] p-8">
+          <TacticalFrame className="lg:col-span-7 bg-[#0d0d12] p-8" intensity={5}>
             <div className="grid gap-6 md:grid-cols-2">
               {relayNodes.map((node) => (
                 <div

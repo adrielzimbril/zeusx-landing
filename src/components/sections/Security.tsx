@@ -1,5 +1,5 @@
-import { Frame } from "@/components/shared/Frame";
 import { SectionHeader } from "@/components/shared/SectionHeader";
+import { TacticalFrame } from "@/components/shared/TacticalFrame";
 
 const layers = [
   {
@@ -30,7 +30,10 @@ export function Security() {
           body="Enterprise-ready security infrastructure designed for sovereign defense applications, ensuring data integrity and operational secrecy."
         />
         <div className="mt-12 grid gap-6 lg:grid-cols-12">
-          <Frame className="lg:col-span-4 bg-[#0d0d12] p-8 flex flex-col justify-between group">
+          <TacticalFrame 
+            className="lg:col-span-4 bg-[#0d0d12] p-8 flex flex-col justify-between group"
+            intensity={25}
+          >
             <div>
               <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">
                 Global Security Status
@@ -55,13 +58,14 @@ export function Security() {
                 </span>
               </div>
             </div>
-          </Frame>
+          </TacticalFrame>
 
           <div className="lg:col-span-8 grid gap-4">
             {layers.map((layer) => (
-              <Frame
+              <TacticalFrame
                 className="group flex items-center justify-between bg-[#0d0d12] p-6 hover:bg-[#111118] transition-all border border-transparent hover:border-white/5"
                 key={layer.id}
+                intensity={10}
               >
                 <div className="flex gap-8 items-center">
                   <span className="font-mono text-[10px] text-zinc-600 w-24">
@@ -79,7 +83,7 @@ export function Security() {
                     {layer.status}
                   </span>
                 </div>
-              </Frame>
+              </TacticalFrame>
             ))}
 
             <div className="mt-4 p-4 border border-dashed border-white/10 flex justify-between items-center opacity-50">

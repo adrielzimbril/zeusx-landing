@@ -1,6 +1,6 @@
-import { Frame } from "@/components/shared/Frame";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import ArchitectureNodes from "@/components/effects/ArchitectureNodes";
+import { TacticalFrame } from "@/components/shared/TacticalFrame";
 
 const architecture = [
   {
@@ -32,7 +32,11 @@ export function Architecture() {
           title="Built around aircraft, relay, console, and audit."
         />
         <div className="mt-12 grid gap-6 lg:grid-cols-12">
-          <Frame className="min-h-[500px] overflow-hidden bg-[#0d0d12] p-8 lg:col-span-7 group relative">
+          <TacticalFrame 
+            className="min-h-[500px] overflow-hidden bg-[#0d0d12] p-8 lg:col-span-7 group relative"
+            intensity={10}
+            glareOpacity={0.1}
+          >
             <div className="absolute inset-0 z-0 opacity-40 group-hover:opacity-60 transition-opacity">
               <ArchitectureNodes />
             </div>
@@ -63,13 +67,14 @@ export function Architecture() {
                 ))}
               </div>
             </div>
-          </Frame>
+          </TacticalFrame>
 
           <div className="grid gap-6 lg:col-span-5">
             {architecture.map((item) => (
-              <Frame
+              <TacticalFrame
                 className="group p-8 bg-[#0d0d12] hover:bg-[#111118] transition-colors relative"
                 key={item.title}
+                intensity={15}
               >
                 <div className="absolute top-4 right-4 text-[10px] font-mono text-zinc-600 border border-white/5 px-2 py-0.5">
                   {item.tag}
@@ -85,7 +90,7 @@ export function Architecture() {
                   <div className="h-px flex-1 bg-white/5" />
                   <div className="w-1.5 h-1.5 rounded-full bg-cyan-500/40" />
                 </div>
-              </Frame>
+              </TacticalFrame>
             ))}
           </div>
         </div>
