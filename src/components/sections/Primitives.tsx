@@ -30,7 +30,7 @@ export function Primitives() {
     <section className="section-block bg-[#050606] pt-12 sm:pt-16">
       <div className="section-shell">
         <div className="grid border border-white/10 bg-black/30 lg:grid-cols-[1fr_340px]">
-          <Frame className="core-simulation min-h-[520px] overflow-hidden bg-[#080909]">
+          <Frame className="relative core-simulation min-h-[520px] overflow-hidden bg-[#080909]">
             <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:38px_38px]" />
             <div className="absolute inset-5 border border-white/10">
               <span className="absolute -left-px -top-px h-3 w-3 border-l border-t border-zinc-500" />

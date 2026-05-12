@@ -74,7 +74,10 @@ export function TacticalFrame({
         }}
       />
 
-      <div className="relative z-10" style={{ transform: "translateZ(20px)" }}>
+      <div
+        className="relative z-10 size-full"
+        style={{ transform: "translateZ(20px)" }}
+      >
         {children}
       </div>
     </div>
