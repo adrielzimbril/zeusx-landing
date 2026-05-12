@@ -13,11 +13,6 @@ const layers = [
     status: "VERIFIED",
   },
   { title: "Role-based crew access", id: "SEC-AUTH-03", status: "ACTIVE" },
-  {
-    title: "Separated payload channels",
-    id: "SEC-CHAN-04",
-    status: "ISOLATED",
-  },
 ];
 
 export function Security() {
@@ -30,7 +25,7 @@ export function Security() {
           body="Enterprise-ready security infrastructure designed for sovereign defense applications, ensuring data integrity and operational secrecy."
         />
         <div className="mt-12 grid gap-6 lg:grid-cols-12">
-          <TacticalFrame 
+          <TacticalFrame
             className="lg:col-span-4 bg-[#0d0d12] p-8 flex flex-col justify-between group"
             intensity={25}
           >
@@ -87,10 +82,10 @@ export function Security() {
             ))}
 
             <div className="mt-4 p-4 border border-dashed border-white/10 flex justify-between items-center opacity-50">
-              <p className="text-[10px] font-mono text-zinc-500 uppercase">
+              <p className="text-[10px] font-mono text-white uppercase">
                 End-to-End Encryption: AES-256-GCM
               </p>
-              <p className="text-[10px] font-mono text-zinc-500 uppercase">
+              <p className="text-[10px] font-mono text-zinc-100 uppercase">
                 Handshake: RSA-4096
               </p>
             </div>

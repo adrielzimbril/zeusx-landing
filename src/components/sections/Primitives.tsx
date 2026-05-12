@@ -38,9 +38,9 @@ export function Primitives() {
               <span className="absolute -bottom-px -left-px h-3 w-3 border-b border-l border-zinc-500" />
               <span className="absolute -bottom-px -right-px h-3 w-3 border-b border-r border-zinc-500" />
             </div>
-            
-            <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-              <div className="w-[480px] h-[480px]">
+
+            <div className="absolute inset-0 z-10 flex items-center size-full justify-center pointer-events-none">
+              <div className="size-full">
                 <Core3D />
               </div>
             </div>
@@ -60,7 +60,7 @@ export function Primitives() {
                 />
               ))}
             </div>
-            
+
             <div className="absolute bottom-9 left-10 z-20 rounded-full border border-cyan-300/20 bg-black/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
               <span className="mr-3 inline-block h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_18px_rgba(34,211,238,1)]" />
               Flight core / active

@@ -33,30 +33,22 @@ export default function Access() {
           {plans.map((plan, index) => (
             <TacticalFrame
               className={`bento-card p-0 overflow-hidden ${
-                index === 1 ? "bg-cyan-300 text-black border-none" : "bg-white/5"
+                index === 1 ? "bg-cyan-300 border-none" : "bg-white/5"
               }`}
               key={plan.tier}
               intensity={20}
             >
               <div className="p-7">
-                <h3
-                  className={`text-2xl font-normal ${
-                    index === 1 ? "text-black" : "text-white"
-                  }`}
-                >
+                <h3 className={`text-2xl font-normal ${"text-white"}`}>
                   {plan.tier}
                 </h3>
                 <p
-                  className={`mt-8 text-5xl font-light tracking-tight ${
-                    index === 1 ? "text-black" : "text-cyan-200"
-                  }`}
+                  className={`mt-8 text-5xl font-light tracking-tight ${"text-cyan-200"}`}
                 >
                   {plan.label}
                 </p>
                 <p
-                  className={`mt-7 min-h-24 text-sm leading-7 ${
-                    index === 1 ? "text-black/70" : "text-zinc-400"
-                  }`}
+                  className={`mt-7 min-h-24 text-sm leading-7 ${"text-zinc-400"}`}
                 >
                   {plan.body}
                 </p>

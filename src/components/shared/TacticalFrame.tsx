@@ -26,7 +26,7 @@ export function TacticalFrame({
     const rect = cardRef.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
-    
+
     const mouseX = e.clientX - centerX;
     const mouseY = e.clientY - centerY;
 
