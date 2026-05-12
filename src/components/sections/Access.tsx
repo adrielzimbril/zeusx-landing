@@ -19,7 +19,7 @@ const plans = [
   },
 ];
 
-export function Access() {
+export default function Access() {
   return (
     <section id="access" className="section-block bg-[#09090b]">
       <div className="section-shell">

@@ -8,7 +8,7 @@ import { Telemetry } from "@/components/sections/Telemetry";
 import { Network } from "@/components/sections/Network";
 import { Security } from "@/components/sections/Security";
 import { Pipeline } from "@/components/sections/Pipeline";
-import { Access } from "@/components/sections/Access";
+import Access from "@/components/sections/Access";
 import { Primitives } from "@/components/sections/Primitives";
 import { CTA } from "@/components/sections/CTA";
 import MouseFollower from "@/components/effects/MouseFollower";

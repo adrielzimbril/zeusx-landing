@@ -10,7 +10,7 @@ interface Drone3DProps {
 
 const Drone3D: React.FC<Drone3DProps> = ({
   className = "w-full h-full",
-  color = "#18181b",
+  color = "#27272a",
   accentColor = "#22d3ee",
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -34,31 +34,50 @@ const Drone3D: React.FC<Drone3DProps> = ({
     container.appendChild(renderer.domElement);
 
     // Lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 3.5);
     scene.add(ambientLight);
 
-    const mainLight = new THREE.DirectionalLight(0xffffff, 1.2);
-    mainLight.position.set(5, 5, 5);
+    const hemiLight = new THREE.HemisphereLight(0xffffff, 0x000000, 3.0);
+    scene.add(hemiLight);
+
+    const mainLight = new THREE.DirectionalLight(0xffffff, 6.0);
+    mainLight.position.set(5, 10, 5);
     scene.add(mainLight);
 
-    const rimLight = new THREE.PointLight(accentColor, 1.5);
-    rimLight.position.set(-5, 2, -5);
+    const fillLight = new THREE.DirectionalLight(accentColor, 4.0);
+    fillLight.position.set(-5, -5, 5);
+    scene.add(fillLight);
+
+    const backLight = new THREE.PointLight(0xffffff, 15);
+    backLight.position.set(-5, 5, -5);
+    scene.add(backLight);
+
+    const rimLight = new THREE.PointLight(accentColor, 20);
+    rimLight.position.set(0, 5, -5);
     scene.add(rimLight);
+
+    const topLight = new THREE.PointLight(0xffffff, 10);
+    topLight.position.set(0, 10, 0);
+    scene.add(topLight);
 
     // Drone Group
     const drone = new THREE.Group();
     scene.add(drone);
 
-    const bodyMaterial = new THREE.MeshStandardMaterial({
-      color: new THREE.Color(color),
-      metalness: 0.8,
-      roughness: 0.2,
+    const bodyMaterial = new THREE.MeshPhysicalMaterial({
+      color: 0x52525b, // Zinc 500
+      metalness: 0.95,
+      roughness: 0.05,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.1,
+      emissive: 0x18181b,
+      emissiveIntensity: 0.2,
     });
 
     const accentMaterial = new THREE.MeshStandardMaterial({
       color: new THREE.Color(accentColor),
       emissive: new THREE.Color(accentColor),
-      emissiveIntensity: 1.5,
+      emissiveIntensity: 5.0,
     });
 
     // Central Chassis
@@ -140,6 +159,21 @@ const Drone3D: React.FC<Drone3DProps> = ({
     lens.position.z = 1.09;
     drone.add(lens);
 
+    // Laser Beam Effect
+    const laserGeo = new THREE.CylinderGeometry(0.01, 0.2, 12, 16, 1, true);
+    const laserMat = new THREE.MeshBasicMaterial({
+      color: accentColor,
+      transparent: true,
+      opacity: 0.3,
+      side: THREE.DoubleSide,
+    });
+    const laser = new THREE.Mesh(laserGeo, laserMat);
+    laser.position.y = -6.4;
+    laser.position.z = 0.8;
+    laser.rotation.x = 0;
+    laser.visible = true;
+    drone.add(laser);
+
     // Landing Gear
     const gearGeo = new THREE.CylinderGeometry(0.05, 0.05, 0.8);
     const footGeo = new THREE.BoxGeometry(0.4, 0.05, 0.8);
@@ -177,6 +211,12 @@ const Drone3D: React.FC<Drone3DProps> = ({
       rotors.forEach((rotor, i) => {
         rotor.rotation.y += 0.4 * (i % 2 === 0 ? 1 : -1);
       });
+
+      // Laser Flicker
+      if (laser) {
+        laser.visible = Math.random() > 0.05;
+        laser.material.opacity = 0.2 + Math.random() * 0.2;
+      }
 
       renderer.render(scene, camera);
     };

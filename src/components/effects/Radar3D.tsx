@@ -20,37 +20,37 @@ const Radar3D: React.FC = () => {
     camera.lookAt(0, 0, 0);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(container.clientWidth || 500, container.clientHeight || 500);
     container.appendChild(renderer.domElement);
 
     const group = new THREE.Group();
     scene.add(group);
 
-    // Grid Helper
-    const grid = new THREE.GridHelper(20, 20, 0x22d3ee, 0x18181b);
+    // Grid Helper - Improved with stronger colors
+    const grid = new THREE.GridHelper(25, 25, 0x22d3ee, 0x1e293b);
     (grid.material as THREE.Material).transparent = true;
-    (grid.material as THREE.Material).opacity = 0.2;
+    (grid.material as THREE.Material).opacity = 0.4;
     group.add(grid);
 
-    // Radar Rings
-    const ringGeo = new THREE.RingGeometry(2, 2.1, 64);
+    // Radar Rings - More rings for detail
+    const ringGeo = new THREE.RingGeometry(2, 2.05, 64);
     const ringMat = new THREE.MeshBasicMaterial({
       color: 0x22d3ee,
       side: THREE.DoubleSide,
       transparent: true,
-      opacity: 0.3,
+      opacity: 0.5,
     });
 
-    for (let i = 1; i <= 3; i++) {
+    for (let i = 1; i <= 5; i++) {
       const ring = new THREE.Mesh(ringGeo, ringMat);
-      ring.scale.set(i * 1.5, i * 1.5, 1);
+      ring.scale.set(i * 1.2, i * 1.2, 1);
       ring.rotation.x = -Math.PI / 2;
       group.add(ring);
     }
 
-    // Radar Sweep
-    const sweepGeo = new THREE.PlaneGeometry(10, 10);
+    // Radar Sweep - Enhanced shader
+    const sweepGeo = new THREE.PlaneGeometry(12, 12);
     const sweepMat = new THREE.ShaderMaterial({
       transparent: true,
       uniforms: {
@@ -69,36 +69,45 @@ const Radar3D: React.FC = () => {
         uniform float uTime;
         uniform vec3 uColor;
         void main() {
-          float angle = atan(vUv.y - 0.5, vUv.x - 0.5);
-          float sweep = mod(angle - uTime * 2.0, 6.283185) / 6.283185;
-          sweep = pow(sweep, 4.0);
-          float dist = distance(vUv, vec2(0.5));
+          vec2 uv = vUv - 0.5;
+          float angle = atan(uv.y, uv.x);
+          float sweep = mod(angle - uTime * 2.5, 6.283185) / 6.283185;
+          sweep = pow(sweep, 3.0);
+          float dist = length(uv);
           if (dist > 0.5) discard;
-          gl_FragColor = vec4(uColor, sweep * 0.5);
+          
+          // Add pulse at the edge of the sweep
+          float edge = smoothstep(0.48, 0.5, dist);
+          gl_FragColor = vec4(uColor, sweep * 0.6 + edge * 0.2);
         }
       `,
     });
     const sweep = new THREE.Mesh(sweepGeo, sweepMat);
     sweep.rotation.x = -Math.PI / 2;
-    sweep.position.y = 0.1;
+    sweep.position.y = 0.05;
     group.add(sweep);
 
-    // Targets (Random Points)
-    const targetGeo = new THREE.SphereGeometry(0.15, 8, 8);
-    const targetMat = new THREE.MeshBasicMaterial({ color: 0x22d3ee });
-    const targets: THREE.Mesh[] = [];
+    // Targets (Random Points) - Differentiated colors
+    const targetGeo = new THREE.SphereGeometry(0.18, 12, 12);
+    const targets: { mesh: THREE.Mesh; mat: THREE.MeshBasicMaterial }[] = [];
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 12; i++) {
+      const isHostile = Math.random() > 0.7;
+      const targetMat = new THREE.MeshBasicMaterial({ 
+        color: isHostile ? 0xf87171 : 0x22d3ee,
+        transparent: true,
+        opacity: 0.8
+      });
       const target = new THREE.Mesh(targetGeo, targetMat);
       const angle = Math.random() * Math.PI * 2;
-      const radius = 3 + Math.random() * 6;
+      const radius = 2 + Math.random() * 8;
       target.position.set(
         Math.cos(angle) * radius,
         0,
         Math.sin(angle) * radius,
       );
       group.add(target);
-      targets.push(target);
+      targets.push({ mesh: target, mat: targetMat });
     }
 
     let rafId: number;
@@ -107,22 +116,26 @@ const Radar3D: React.FC = () => {
       const time = Date.now() * 0.001;
       sweepMat.uniforms.uTime.value = time;
 
-      targets.forEach((target, i) => {
-        target.scale.setScalar(0.8 + Math.sin(time * 5 + i) * 0.2);
-        const glow = Math.sin(time * 2 + i) * 0.5 + 0.5;
-        (target.material as THREE.MeshBasicMaterial).opacity = 0.5 + glow * 0.5;
+      targets.forEach((t, i) => {
+        t.mesh.scale.setScalar(0.8 + Math.sin(time * 6 + i) * 0.3);
+        const glow = Math.sin(time * 3 + i) * 0.5 + 0.5;
+        t.mat.opacity = 0.6 + glow * 0.4;
       });
 
-      group.rotation.y += 0.001;
+      group.rotation.y += 0.0005;
       renderer.render(scene, camera);
     };
 
     animate();
 
     const handleResize = () => {
-      camera.aspect = container.clientWidth / container.clientHeight;
+      if (!container) return;
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+      if (w === 0 || h === 0) return;
+      camera.aspect = w / h;
       camera.updateProjectionMatrix();
-      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.setSize(w, h);
     };
 
     window.addEventListener("resize", handleResize);
@@ -134,6 +147,14 @@ const Radar3D: React.FC = () => {
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
       }
+      grid.geometry.dispose();
+      (grid.material as THREE.Material).dispose();
+      ringGeo.dispose();
+      ringMat.dispose();
+      sweepGeo.dispose();
+      sweepMat.dispose();
+      targetGeo.dispose();
+      targets.forEach(t => t.mat.dispose());
     };
   }, []);
 

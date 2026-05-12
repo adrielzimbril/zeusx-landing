@@ -1,5 +1,5 @@
-import { DroneVisual } from "@/components/shared/DroneVisual";
-import BlackHole from "@/components/effects/BlackHole";
+import Drone3D from "@/components/effects/Drone3D";
+import PixelBlast from "@/components/PixelBlast";
 
 export function Hero() {
   return (
@@ -7,7 +7,15 @@ export function Hero() {
       id="hero"
       className="relative flex min-h-screen items-center overflow-hidden border-b border-white/5 px-5 pt-24"
     >
-      <BlackHole />
+      <PixelBlast 
+        variant="square" 
+        pixelSize={3} 
+        color="#22d3ee" 
+        patternScale={3} 
+        patternDensity={1.2} 
+        speed={0.4}
+        edgeFade={0.4}
+      />
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:80px_80px] opacity-20" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(2,3,3,0.8)_100%)]" />
 
@@ -33,24 +41,23 @@ export function Hero() {
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             <a
-              className="tactile-base group relative overflow-hidden rounded-lg px-8 py-4 text-sm font-bold uppercase tracking-widest text-white transition-all hover:scale-105 active:scale-95"
+              className="button-primary"
               href="#models"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
               View Flagship Models
             </a>
             <a
-              className="tactile-glass rounded-lg px-8 py-4 text-sm font-bold uppercase tracking-widest text-zinc-400 transition-all hover:text-white"
+              className="button-secondary"
               href="#architecture"
             >
               Explore Architecture
             </a>
           </div>
         </div>
-        <div className="relative perspective-1000">
-          <div className="absolute -inset-20 rounded-full bg-cyan-500/5 blur-[120px] glow-cyan" />
-          <div className="preserve-3d transition-transform duration-700 hover:rotate-y-10">
-            <DroneVisual label="ZX-9 COMMAND" />
+        <div className="relative perspective-2000">
+          <div className="absolute -inset-20 rounded-full bg-cyan-500/10 blur-[140px] glow-cyan opacity-40" />
+          <div className="h-[500px] w-full">
+            <Drone3D className="w-full h-full" />
           </div>
 
           {/* Metadata Overlay */}
