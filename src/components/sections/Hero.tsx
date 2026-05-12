@@ -1,5 +1,4 @@
 import Drone3D from "@/components/effects/Drone3D";
-import PixelBlast from "@/components/PixelBlast";
 
 export function Hero() {
   return (
@@ -7,15 +6,6 @@ export function Hero() {
       id="hero"
       className="relative flex min-h-screen items-center overflow-hidden border-b border-white/5 px-5 pt-24"
     >
-      <PixelBlast 
-        variant="square" 
-        pixelSize={3} 
-        color="#22d3ee" 
-        patternScale={3} 
-        patternDensity={1.2} 
-        speed={0.4}
-        edgeFade={0.4}
-      />
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:80px_80px] opacity-20" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(2,3,3,0.8)_100%)]" />
 
@@ -40,16 +30,10 @@ export function Hero() {
             tactical intelligence.
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <a
-              className="button-primary"
-              href="#models"
-            >
+            <a className="button-primary" href="#models">
               View Flagship Models
             </a>
-            <a
-              className="button-secondary"
-              href="#architecture"
-            >
+            <a className="button-secondary" href="#architecture">
               Explore Architecture
             </a>
           </div>
