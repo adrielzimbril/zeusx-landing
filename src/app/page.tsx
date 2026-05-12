@@ -16,7 +16,7 @@ import { Crosshair } from "@/components/effects/Crosshair";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import PixelBlast from "@/components/background/PixelBlast";
-import LightRays from "@/components/LightRays";
+import LightRays from "@/components/background/LightRays";
 
 export default function Home() {
   const parallaxRef = useRef<HTMLDivElement>(null);
