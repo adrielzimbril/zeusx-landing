@@ -1,4 +1,6 @@
 import { SectionHeader } from "@/components/shared/SectionHeader";
+import { TacticalFrame } from "@/components/shared/TacticalFrame";
+import { MissionFlow3D } from "@/components/effects/MissionFlow3D";
 
 const pipeline = [
   [
@@ -30,29 +32,40 @@ const pipeline = [
 
 export function Pipeline() {
   return (
-    <section className="section-block overflow-hidden bg-[#070708]">
-      <div className="section-shell">
+    <section className="section-block relative overflow-hidden bg-[#070708]">
+      {/* Background 3D Flow */}
+      <div className="absolute inset-0 opacity-20">
+        <MissionFlow3D />
+      </div>
+
+      <div className="section-shell relative z-10">
         <SectionHeader
           eyebrow="Hardware pipeline"
           title="A mission system that reads like infrastructure."
-          body="Large borders and phased rows mirror the reference template while keeping the content focused on product positioning."
+          body="Synchronized mission states, sensor normalization, and real-time command review layers."
         />
-        <div className="mt-8 grid border border-white/10 bg-white/10 lg:grid-cols-5">
-          {pipeline.map(([number, title, body]) => (
-            <article className="group min-h-80 bg-[#0b0b0d] p-6" key={title}>
-              <div className="flex items-center justify-between">
-                <span className="font-mono text-xs text-zinc-500">
-                  {number}
-                </span>
-                <span className="h-2 w-2 rounded-full bg-cyan-300/60 shadow-[0_0_20px_rgba(103,232,249,0.9)]" />
+        <div className="mt-8 grid border border-white/10 bg-white/5 lg:grid-cols-5">
+          {pipeline.map(([number, title, body], index) => (
+            <TacticalFrame 
+              className="min-h-80 bg-[#0b0b0d]/80 backdrop-blur-sm border-r border-white/10 last:border-r-0" 
+              key={title}
+              intensity={index % 2 === 0 ? 10 : 15}
+            >
+              <div className="p-6">
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-xs text-zinc-500">
+                    {number}
+                  </span>
+                  <span className="h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_20px_rgba(34,211,238,0.8)]" />
+                </div>
+                <div className="mt-20 h-24 border-l border-cyan-300/30 pl-5">
+                  <h3 className="text-xl font-normal text-white">{title}</h3>
+                  <p className="mt-4 text-sm leading-6 text-zinc-500 transition group-hover:text-zinc-300">
+                    {body}
+                  </p>
+                </div>
               </div>
-              <div className="mt-20 h-24 border-l border-cyan-300/30 pl-5">
-                <h3 className="text-xl font-normal text-white">{title}</h3>
-                <p className="mt-4 text-sm leading-6 text-zinc-500 transition group-hover:text-zinc-300">
-                  {body}
-                </p>
-              </div>
-            </article>
+            </TacticalFrame>
           ))}
         </div>
       </div>

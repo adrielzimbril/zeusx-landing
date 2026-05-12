@@ -1,55 +1,90 @@
 import { Frame } from "@/components/shared/Frame";
 import { SectionHeader } from "@/components/shared/SectionHeader";
+import ArchitectureNodes from "@/components/effects/ArchitectureNodes";
 
 const architecture = [
-  [
-    "Edge autonomy",
-    "Critical routines stay onboard to preserve continuity when a field link is degraded.",
-  ],
-  [
-    "Mission fabric",
-    "Aircraft and relay units share a compact state model that keeps the tactical view coherent.",
-  ],
-  [
-    "Operator console",
-    "Sensitive decisions surface through a human command interface with logs and validation.",
-  ],
+  {
+    title: "Edge autonomy",
+    body: "Critical routines stay onboard to preserve continuity when a field link is degraded.",
+    tag: "RESILIENCE",
+  },
+  {
+    title: "Mission fabric",
+    body: "Aircraft and relay units share a compact state model that keeps the tactical view coherent.",
+    tag: "SYNC",
+  },
+  {
+    title: "Operator console",
+    body: "Sensitive decisions surface through a human command interface with logs and validation.",
+    tag: "CONTROL",
+  },
 ];
 
 export function Architecture() {
   return (
-    <section id="architecture" className="section-block bg-[#09090b]">
+    <section
+      id="architecture"
+      className="section-block bg-[#09090b] relative overflow-hidden"
+    >
       <div className="section-shell">
         <SectionHeader
           eyebrow="Advanced architecture"
           title="Built around aircraft, relay, console, and audit."
         />
-        <div className="mt-8 grid gap-4 lg:grid-cols-12">
-          <Frame className="min-h-[460px] overflow-hidden bg-black/45 p-7 lg:col-span-7">
-            <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(34,211,238,0.16),transparent_35%),linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:auto,48px_48px]" />
-            <div className="relative flex h-full flex-col justify-between">
+        <div className="mt-12 grid gap-6 lg:grid-cols-12">
+          <Frame className="min-h-[500px] overflow-hidden bg-[#0d0d12] p-8 lg:col-span-7 group relative">
+            <div className="absolute inset-0 z-0 opacity-40 group-hover:opacity-60 transition-opacity">
+              <ArchitectureNodes />
+            </div>
+
+            <div className="relative z-10 flex h-full flex-col justify-between pointer-events-none">
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.24em] text-cyan-300">
-                  Mission architecture
+                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-cyan-400">
+                  Core Network Topology
                 </p>
-                <h3 className="mt-5 max-w-xl text-4xl font-normal leading-none tracking-tight text-white">
-                  One command plane across airframes and ground systems.
+                <h3 className="mt-6 max-w-lg text-4xl font-light leading-[1.1] tracking-tight text-white">
+                  A decentralized command plane for synchronized operations.
                 </h3>
               </div>
-              <div className="grid gap-px bg-white/10 md:grid-cols-3">
-                {["Aircraft", "Relay", "Console"].map((item) => (
-                  <div className="bg-[#0d0d10] p-5 text-zinc-300" key={item}>
-                    {item}
+
+              <div className="grid grid-cols-3 gap-px bg-white/5 border border-white/5">
+                {["AIRCRAFT", "RELAY", "CONSOLE"].map((item) => (
+                  <div
+                    className="bg-[#09090b]/80 backdrop-blur-sm p-4 text-center"
+                    key={item}
+                  >
+                    <p className="text-[10px] font-mono tracking-widest text-zinc-500">
+                      {item}
+                    </p>
+                    <div className="mt-2 h-1 w-full bg-cyan-500/20">
+                      <div className="h-full w-2/3 bg-cyan-500 shadow-[0_0_10px_rgba(34,211,238,0.5)]" />
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
           </Frame>
-          <div className="grid gap-4 lg:col-span-5">
-            {architecture.map(([title, body]) => (
-              <Frame className="bento-card p-6" key={title}>
-                <h3 className="text-2xl font-normal text-white">{title}</h3>
-                <p className="mt-4 text-sm leading-7 text-zinc-400">{body}</p>
+
+          <div className="grid gap-6 lg:col-span-5">
+            {architecture.map((item) => (
+              <Frame
+                className="group p-8 bg-[#0d0d12] hover:bg-[#111118] transition-colors relative"
+                key={item.title}
+              >
+                <div className="absolute top-4 right-4 text-[10px] font-mono text-zinc-600 border border-white/5 px-2 py-0.5">
+                  {item.tag}
+                </div>
+                <h3 className="text-2xl font-light text-white group-hover:text-cyan-400 transition-colors">
+                  {item.title}
+                </h3>
+                <p className="mt-4 text-sm leading-relaxed text-zinc-400 font-light">
+                  {item.body}
+                </p>
+
+                <div className="mt-6 flex items-center gap-2">
+                  <div className="h-px flex-1 bg-white/5" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-cyan-500/40" />
+                </div>
               </Frame>
             ))}
           </div>

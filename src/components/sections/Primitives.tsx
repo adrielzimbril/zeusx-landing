@@ -1,5 +1,7 @@
 import type { CSSProperties } from "react";
 import { Frame } from "@/components/shared/Frame";
+import { Core3D } from "@/components/effects/Core3D";
+import { TacticalFrame } from "@/components/shared/TacticalFrame";
 
 const primitives = [
   [
@@ -36,6 +38,13 @@ export function Primitives() {
               <span className="absolute -bottom-px -left-px h-3 w-3 border-b border-l border-zinc-500" />
               <span className="absolute -bottom-px -right-px h-3 w-3 border-b border-r border-zinc-500" />
             </div>
+            
+            <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+              <div className="w-[480px] h-[480px]">
+                <Core3D />
+              </div>
+            </div>
+
             <div className="particle-field" aria-hidden="true">
               {particles.map((particle) => (
                 <span
@@ -51,30 +60,17 @@ export function Primitives() {
                 />
               ))}
             </div>
-            <div className="wire-core" aria-hidden="true">
-              <svg viewBox="0 0 420 420" role="img">
-                <title>Zeusx flight core wireframe</title>
-                <g className="wire-orbit">
-                  <polygon points="210,12 332,60 407,182 352,338 205,407 64,348 18,210 68,95" />
-                  <polygon points="210,68 310,112 356,218 300,318 190,344 88,292 82,154" />
-                  <polyline points="210,12 210,68 407,182 356,218 205,407 190,344 18,210 82,154 332,60 310,112 352,338 300,318 64,348 88,292 68,95 210,68" />
-                </g>
-                <g className="wire-body">
-                  <polygon points="215,86 318,170 295,300 190,345 75,272 78,155" />
-                  <polyline points="215,86 190,345 78,155 318,170 75,272 295,300 215,86" />
-                </g>
-              </svg>
-            </div>
-            <div className="absolute bottom-9 left-10 rounded-full border border-cyan-300/20 bg-black/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
+            
+            <div className="absolute bottom-9 left-10 z-20 rounded-full border border-cyan-300/20 bg-black/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
               <span className="mr-3 inline-block h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_18px_rgba(34,211,238,1)]" />
               Flight core / active
             </div>
-            <p className="absolute right-10 top-12 font-mono text-[10px] uppercase tracking-[0.32em] text-zinc-600">
+            <p className="absolute right-10 top-12 z-20 font-mono text-[10px] uppercase tracking-[0.32em] text-zinc-600">
               ZX_VER.880
             </p>
           </Frame>
           <div className="grid border-l border-white/10">
-            <div className="flex min-h-[260px] flex-col justify-between bg-cyan-500 p-8 text-black">
+            <TacticalFrame className="flex min-h-[260px] flex-col justify-between bg-cyan-500 p-8 text-black border-none">
               <div className="flex items-center justify-between">
                 <span className="grid h-8 w-8 place-items-center rounded bg-black/15 font-mono text-xs font-bold">
                   ZX
@@ -89,8 +85,8 @@ export function Primitives() {
                   Active Squadron Coherence
                 </p>
               </div>
-            </div>
-            <div className="flex min-h-[260px] flex-col justify-between bg-zinc-200 p-8 text-zinc-950">
+            </TacticalFrame>
+            <TacticalFrame className="flex min-h-[260px] flex-col justify-between bg-zinc-200 p-8 text-zinc-950 border-none border-t border-white/10">
               <div className="flex items-center justify-between">
                 <span className="grid h-8 w-8 place-items-center rounded bg-black/20 font-mono text-xs font-bold">
                   RX
@@ -105,12 +101,12 @@ export function Primitives() {
                   Command Link Latency
                 </p>
               </div>
-            </div>
+            </TacticalFrame>
           </div>
         </div>
         <div className="grid border-x border-b border-white/10 bg-black/20 md:grid-cols-3">
           {primitives.map(([title, body], index) => (
-            <article
+            <TacticalFrame
               className="min-h-64 border-b border-white/10 p-9 md:border-b-0 md:border-r md:last:border-r-0"
               key={title}
             >
@@ -121,7 +117,7 @@ export function Primitives() {
                 {title}
               </h3>
               <p className="mt-5 text-sm leading-7 text-zinc-500">{body}</p>
-            </article>
+            </TacticalFrame>
           ))}
         </div>
       </div>

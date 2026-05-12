@@ -1,5 +1,5 @@
-import { Frame } from "@/components/shared/Frame";
 import { SectionHeader } from "@/components/shared/SectionHeader";
+import { TacticalFrame } from "@/components/shared/TacticalFrame";
 
 const plans = [
   {
@@ -31,44 +31,47 @@ export function Access() {
         />
         <div className="mt-8 grid gap-4 lg:grid-cols-3">
           {plans.map((plan, index) => (
-            <Frame
-              className={`bento-card p-7 ${
-                index === 1 ? "bg-cyan-300 text-black" : ""
+            <TacticalFrame
+              className={`bento-card p-0 overflow-hidden ${
+                index === 1 ? "bg-cyan-300 text-black border-none" : "bg-white/5"
               }`}
               key={plan.tier}
+              intensity={20}
             >
-              <h3
-                className={`text-2xl font-normal ${
-                  index === 1 ? "text-black" : "text-white"
-                }`}
-              >
-                {plan.tier}
-              </h3>
-              <p
-                className={`mt-8 text-5xl font-light tracking-tight ${
-                  index === 1 ? "text-black" : "text-cyan-200"
-                }`}
-              >
-                {plan.label}
-              </p>
-              <p
-                className={`mt-7 min-h-24 text-sm leading-7 ${
-                  index === 1 ? "text-black/70" : "text-zinc-400"
-                }`}
-              >
-                {plan.body}
-              </p>
-              <a
-                className={
-                  index === 1
-                    ? "mt-8 inline-flex rounded-full bg-black px-5 py-3 text-sm text-white"
-                    : "mt-8 inline-flex rounded-full border border-white/15 px-5 py-3 text-sm text-white"
-                }
-                href="#contact"
-              >
-                Open dossier
-              </a>
-            </Frame>
+              <div className="p-7">
+                <h3
+                  className={`text-2xl font-normal ${
+                    index === 1 ? "text-black" : "text-white"
+                  }`}
+                >
+                  {plan.tier}
+                </h3>
+                <p
+                  className={`mt-8 text-5xl font-light tracking-tight ${
+                    index === 1 ? "text-black" : "text-cyan-200"
+                  }`}
+                >
+                  {plan.label}
+                </p>
+                <p
+                  className={`mt-7 min-h-24 text-sm leading-7 ${
+                    index === 1 ? "text-black/70" : "text-zinc-400"
+                  }`}
+                >
+                  {plan.body}
+                </p>
+                <a
+                  className={
+                    index === 1
+                      ? "mt-8 inline-flex rounded-full bg-black px-5 py-3 text-sm text-white"
+                      : "mt-8 inline-flex rounded-full border border-white/15 px-5 py-3 text-sm text-white"
+                  }
+                  href="#contact"
+                >
+                  Open dossier
+                </a>
+              </div>
+            </TacticalFrame>
           ))}
         </div>
         <div className="mt-4 grid grid-cols-2 gap-px border border-white/10 bg-white/10 lg:grid-cols-4">
