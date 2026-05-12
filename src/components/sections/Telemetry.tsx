@@ -1,6 +1,6 @@
-import { Frame } from "@/components/shared/Frame";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import Radar3D from "@/components/effects/Radar3D";
+import { TacticalFrame } from "@/components/shared/TacticalFrame";
 import { useEffect, useState } from "react";
 
 const telemetryItems = [
@@ -61,7 +61,11 @@ export function Telemetry() {
           title="A command board for fleet health and mission status."
         />
         <div className="mt-12 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-          <Frame className="min-h-[500px] overflow-hidden bg-[#0d0d12] p-0 relative group">
+          <TacticalFrame 
+            className="min-h-[500px] overflow-hidden bg-[#0d0d12] p-0 relative group"
+            intensity={10}
+            glareOpacity={0.05}
+          >
             <div className="absolute inset-0 z-0 opacity-50 group-hover:opacity-80 transition-opacity">
               <Radar3D />
             </div>
@@ -102,13 +106,14 @@ export function Telemetry() {
                 </div>
               </div>
             </div>
-          </Frame>
+          </TacticalFrame>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
             {telemetryItems.map((item) => (
-              <Frame
+              <TacticalFrame
                 className="group p-8 bg-[#0d0d12] hover:bg-[#111118] transition-all relative border-l-2 border-transparent hover:border-cyan-500"
                 key={item.label}
+                intensity={15}
               >
                 <div className="flex justify-between items-start">
                   <p className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
@@ -126,7 +131,7 @@ export function Telemetry() {
                 <p className="mt-4 text-xs leading-relaxed text-zinc-500 font-light max-w-[200px]">
                   {item.body}
                 </p>
-              </Frame>
+              </TacticalFrame>
             ))}
           </div>
         </div>

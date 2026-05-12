@@ -5,12 +5,16 @@ interface TacticalFrameProps {
   children: React.ReactNode;
   className?: string;
   intensity?: number;
+  glareOpacity?: number;
+  glareColor?: string;
 }
 
 export function TacticalFrame({
   children,
   className = "",
   intensity = 15,
+  glareOpacity = 0.15,
+  glareColor = "255, 255, 255",
 }: TacticalFrameProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [rotate, setRotate] = useState({ x: 0, y: 0 });
@@ -34,7 +38,7 @@ export function TacticalFrame({
     // Glare position
     const glX = ((e.clientX - rect.left) / rect.width) * 100;
     const glY = ((e.clientY - rect.top) / rect.height) * 100;
-    setGlare({ x: glX, y: glY, opacity: 0.15 });
+    setGlare({ x: glX, y: glY, opacity: glareOpacity });
   };
 
   const handleMouseLeave = () => {
@@ -66,7 +70,7 @@ export function TacticalFrame({
       <div
         className="absolute inset-0 pointer-events-none transition-opacity duration-300"
         style={{
-          background: `radial-gradient(circle at ${glare.x}% ${glare.y}%, rgba(255,255,255,${glare.opacity}), transparent 60%)`,
+          background: `radial-gradient(circle at ${glare.x}% ${glare.y}%, rgba(${glareColor},${glare.opacity}), transparent 60%)`,
         }}
       />
 

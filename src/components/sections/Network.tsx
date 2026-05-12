@@ -97,7 +97,7 @@ export function Network() {
                 ALL MESH NODES OPERATIONAL. ENCRYPTION HANDSHAKE VERIFIED.
               </p>
             </div>
-          </Frame>
+          </TacticalFrame>
         </div>
       </div>
     </section>
