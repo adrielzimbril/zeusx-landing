@@ -31,37 +31,39 @@ export default function Home() {
         />
       </div>
       <nav className="fixed left-0 right-0 top-6 z-50 px-5">
-        <div className="nav-pill mx-auto flex h-14 max-w-4xl items-center justify-between px-6">
-          <a
-            className="text-sm font-semibold tracking-tight text-white"
-            href="#hero"
-          >
-            Zeusx
-          </a>
-          <div className="hidden items-center gap-10 text-sm text-zinc-500 md:flex">
-            <a className="transition hover:text-white" href="#architecture">
-              Platform
-            </a>
-            <a className="transition hover:text-white" href="#models">
-              Models
-            </a>
-            <a className="transition hover:text-white" href="#telemetry">
-              Docs
-            </a>
-          </div>
-          <div className="flex items-center gap-5">
+        <div className="nav-shell mx-auto">
+          <div className="nav-pill mx-auto flex h-14 items-center justify-between px-2">
             <a
-              className="hidden text-sm text-zinc-500 hover:text-white sm:block"
-              href="#access"
+              className="nav-inner-block flex min-w-28 items-center justify-center text-sm font-semibold tracking-tight text-white"
+              href="#hero"
             >
-              Log in
+              Zeusx
             </a>
-            <a
-              className="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-cyan-200"
-              href="#contact"
-            >
-              Get Started
-            </a>
+            <div className="nav-inner-block hidden items-center gap-10 px-10 text-sm text-zinc-500 md:flex">
+              <a className="transition hover:text-white" href="#architecture">
+                Platform
+              </a>
+              <a className="transition hover:text-white" href="#models">
+                Models
+              </a>
+              <a className="transition hover:text-white" href="#telemetry">
+                Docs
+              </a>
+            </div>
+            <div className="nav-inner-block flex items-center gap-3 pl-5">
+              <a
+                className="hidden text-sm text-zinc-500 hover:text-white sm:block"
+                href="#access"
+              >
+                Log in
+              </a>
+              <a
+                className="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-cyan-200"
+                href="#contact"
+              >
+                Get Started
+              </a>
+            </div>
           </div>
         </div>
       </nav>

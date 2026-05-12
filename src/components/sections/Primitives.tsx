@@ -3,16 +3,16 @@ import { Frame } from "@/components/shared/Frame";
 
 const primitives = [
   [
-    "State Persistence",
-    "Maintain rigorous flight-state continuity across parallel drone environments. Snapshots occur continuously without operational decay.",
+    "Target Continuity",
+    "Sustain a unified picture across airframes, relay nodes, and operator consoles while every update remains traceable.",
   ],
   [
-    "Telemetry Aggregation",
-    "Consume scattered field signals into a strictly parsed, singular data structure. Reveal truth through raw metric convergence.",
+    "Sensor Fusion",
+    "Merge optical, thermal, navigation, and terrain signals into one readable command layer for fast review.",
   ],
   [
-    "Identity Encryption",
-    "Zero-trust boundary logic applied universally. Cryptographic exchange happens invisibly at the compute edge.",
+    "Command Integrity",
+    "Protect crew roles, aircraft state, and mission logs with enforced validation from launch to recovery.",
   ],
 ];
 
@@ -53,7 +53,7 @@ export function Primitives() {
             </div>
             <div className="wire-core" aria-hidden="true">
               <svg viewBox="0 0 420 420" role="img">
-                <title>Zeusx core simulation wireframe</title>
+                <title>Zeusx flight core wireframe</title>
                 <g className="wire-orbit">
                   <polygon points="210,12 332,60 407,182 352,338 205,407 64,348 18,210 68,95" />
                   <polygon points="210,68 310,112 356,218 300,318 190,344 88,292 82,154" />
@@ -65,44 +65,44 @@ export function Primitives() {
                 </g>
               </svg>
             </div>
-            <div className="absolute bottom-9 left-10 rounded-full border border-white/10 bg-black/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-300">
-              <span className="mr-3 inline-block h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_18px_rgba(110,231,183,1)]" />
-              Core simulation / active
+            <div className="absolute bottom-9 left-10 rounded-full border border-cyan-300/20 bg-black/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">
+              <span className="mr-3 inline-block h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_18px_rgba(34,211,238,1)]" />
+              Flight core / active
             </div>
             <p className="absolute right-10 top-12 font-mono text-[10px] uppercase tracking-[0.32em] text-zinc-600">
               ZX_VER.880
             </p>
           </Frame>
           <div className="grid border-l border-white/10">
-            <div className="flex min-h-[260px] flex-col justify-between bg-emerald-600 p-8 text-white">
+            <div className="flex min-h-[260px] flex-col justify-between bg-cyan-500 p-8 text-black">
               <div className="flex items-center justify-between">
-                <span className="grid h-8 w-8 place-items-center rounded bg-white/15 font-mono text-lg">
-                  ◫
+                <span className="grid h-8 w-8 place-items-center rounded bg-black/15 font-mono text-xs font-bold">
+                  ZX
                 </span>
-                <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-white/55">
-                  SYS_LOAD
+                <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-black/50">
+                  FLEET_SYNC
                 </span>
               </div>
               <div>
                 <p className="text-6xl font-semibold tracking-tight">99.8%</p>
-                <p className="mt-2 text-sm font-medium text-white/80">
-                  Processing Node Utilization
+                <p className="mt-2 text-sm font-semibold text-black/70">
+                  Active Squadron Coherence
                 </p>
               </div>
             </div>
             <div className="flex min-h-[260px] flex-col justify-between bg-zinc-200 p-8 text-zinc-950">
               <div className="flex items-center justify-between">
-                <span className="grid h-8 w-8 place-items-center rounded bg-black/20 font-mono text-lg">
-                  ▣
+                <span className="grid h-8 w-8 place-items-center rounded bg-black/20 font-mono text-xs font-bold">
+                  RX
                 </span>
                 <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
-                  SYNC_RATE
+                  RELAY_RATE
                 </span>
               </div>
               <div>
                 <p className="text-6xl font-semibold tracking-tight">2ms</p>
                 <p className="mt-2 text-sm font-medium text-zinc-600">
-                  Cross-cluster Latency
+                  Command Link Latency
                 </p>
               </div>
             </div>
@@ -114,7 +114,7 @@ export function Primitives() {
               className="min-h-64 border-b border-white/10 p-9 md:border-b-0 md:border-r md:last:border-r-0"
               key={title}
             >
-              <span className="grid h-5 w-5 place-items-center rounded bg-zinc-500 text-[10px] text-white">
+              <span className="grid h-5 w-5 place-items-center rounded bg-cyan-400/80 text-[10px] font-bold text-black">
                 {index + 1}
               </span>
               <h3 className="mt-10 max-w-xs break-words text-xl font-semibold tracking-[0.28em] text-white">
