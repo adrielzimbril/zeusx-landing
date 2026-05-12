@@ -43,7 +43,7 @@ export default function Home() {
         <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.75]">
           <LightRays
             raysOrigin="top-center"
-            raysColor="#1691e4"
+            raysColor="#22d3ee"
             raysSpeed={1}
             lightSpread={0.5}
             rayLength={3}
