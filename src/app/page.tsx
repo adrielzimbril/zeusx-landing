@@ -11,44 +11,54 @@ import { Telemetry } from "@/components/sections/Telemetry";
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#060607] text-zinc-100">
-      <nav className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-black/50 backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5">
+    <main className="tactical-grid min-h-screen overflow-hidden bg-[#020303] text-zinc-100">
+      <nav className="fixed left-0 right-0 top-6 z-50 px-5">
+        <div className="nav-pill mx-auto flex h-14 max-w-4xl items-center justify-between px-6">
           <a
-            className="text-sm font-semibold tracking-[0.28em] text-white"
+            className="text-sm font-semibold tracking-tight text-white"
             href="#hero"
           >
-            ZEUSX
+            Zeusx
           </a>
-          <div className="hidden items-center gap-7 text-xs uppercase tracking-[0.22em] text-zinc-400 md:flex">
+          <div className="hidden items-center gap-10 text-sm text-zinc-500 md:flex">
+            <a className="transition hover:text-white" href="#architecture">
+              Platform
+            </a>
             <a className="transition hover:text-white" href="#models">
               Models
             </a>
             <a className="transition hover:text-white" href="#telemetry">
-              Telemetry
-            </a>
-            <a className="transition hover:text-white" href="#access">
-              Access
+              Docs
             </a>
           </div>
-          <a
-            className="rounded-full border border-cyan-300/40 px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] text-cyan-100 transition hover:bg-cyan-300 hover:text-black"
-            href="#contact"
-          >
-            Request brief
-          </a>
+          <div className="flex items-center gap-5">
+            <a
+              className="hidden text-sm text-zinc-500 hover:text-white sm:block"
+              href="#access"
+            >
+              Log in
+            </a>
+            <a
+              className="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-cyan-200"
+              href="#contact"
+            >
+              Get Started
+            </a>
+          </div>
         </div>
       </nav>
-      <Hero />
-      <Primitives />
-      <Pipeline />
-      <Telemetry />
-      <Network />
-      <Architecture />
-      <Security />
-      <Models />
-      <Access />
-      <CTA />
+      <div className="page-frame">
+        <Hero />
+        <Primitives />
+        <Pipeline />
+        <Telemetry />
+        <Network />
+        <Architecture />
+        <Security />
+        <Models />
+        <Access />
+        <CTA />
+      </div>
     </main>
   );
 }
