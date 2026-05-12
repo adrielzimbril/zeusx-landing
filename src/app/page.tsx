@@ -1,3 +1,4 @@
+import PixelBlast from "@/components/PixelBlast";
 import { Access } from "@/components/sections/Access";
 import { Architecture } from "@/components/sections/Architecture";
 import { CTA } from "@/components/sections/CTA";
@@ -12,6 +13,23 @@ import { Telemetry } from "@/components/sections/Telemetry";
 export default function Home() {
   return (
     <main className="tactical-grid min-h-screen overflow-hidden bg-[#020303] text-zinc-100">
+      <div className="fixed inset-0 z-0 opacity-70">
+        <PixelBlast
+          variant="square"
+          pixelSize={2}
+          color="#10b981"
+          patternScale={1.85}
+          patternDensity={0.34}
+          enableRipples
+          rippleSpeed={0.35}
+          rippleThickness={0.14}
+          rippleIntensityScale={0.55}
+          speed={0.025}
+          transparent
+          edgeFade={0.34}
+          noiseAmount={0.035}
+        />
+      </div>
       <nav className="fixed left-0 right-0 top-6 z-50 px-5">
         <div className="nav-pill mx-auto flex h-14 max-w-4xl items-center justify-between px-6">
           <a
